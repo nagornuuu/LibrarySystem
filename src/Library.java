@@ -71,6 +71,10 @@ public class Library {
             System.out.print("|");
             for (int j = 0; j < MAX_BOOKS; j++) {
                 if (j < bookAdded[i] && books[i][j] != null) {
+                    // %-5s| - ensures that book name can be consisted of max 5 characters in the shelf display
+                    // i - representation of genre index(Fiction, Science)
+                    // j - representation of the position of a specific book
+                    // Math.min() - This ensures that the substring operation does not go out of bounds if the name is shorter than 5 characters
                     System.out.printf("%-5s|", books[i][j].getName().substring(0, Math.min(5, books[i][j].getName().length())));
                 } else {
                     System.out.print("     |"); // Empty slot
