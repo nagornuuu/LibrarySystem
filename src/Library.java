@@ -8,7 +8,7 @@ public class Library {
     private static final int GENRES = 3;    // The Number of genres in a system
 
     // Fields
-    private static Book[][] books = new Book[MAX_BOOKS][MAX_BOOKS];     // 2D array in which we store the books
+    private static Book[][] books = new Book[GENRES][MAX_BOOKS];     // 2D array in which we store the books
     private static String[] genres = {"Fiction", "Science", "History"}; // Array where we store genres
     private static int[] booksAdded = new int[GENRES]; // thankfully to this variable , we can track the number of books added to genre
     protected static int totalBooks = 0;  // Track the number of books in the library
