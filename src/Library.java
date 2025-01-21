@@ -54,5 +54,44 @@ public class Library {
         }
     }
 
-    
+    public static void deleteBook(Scanner scanner) {
+        System.out.println("\nAvailable Genres: ");
+        for (int i = 0; i < genres.length; i++) {
+            System.out.println((i + 1) + ". " + genres[i]);
+        }
+        System.out.print("Select a genre (1-" + GENRES + "): ");
+        int genreChoice = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        if (genreChoice < 0 || genreChoice >= GENRES) {
+            System.out.println("Invalid Genre Choice. Try again");
+            return;
+        }
+
+        if (bookAdded[genreChoice] == 0) {
+            System.out.println("No Books available in this genre");
+            return;
+        }
+
+        System.out.println("\nBooks in " + genres[genreChoice] + ":");
+        for (int i = 0; i < bookAdded[genreChoice]; i++) {
+            System.out.println((i + 1) + ". " + books[genreChoice][i].getName());
+        }
+        System.out.print("Select a book to delete (1-" + bookAdded[genreChoice] + "): ");
+        int bookToDelete = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        if (bookToDelete < 0 || bookToDelete >= bookAdded[genreChoice]) {
+            System.out.println("Invalid Book To Delete. Try again");
+            return;
+        }
+
+        for (int i = bookToDelete; i < bookAdded[genreChoice] - 1; i++) {
+            books[genreChoice][i] = books[genreChoice][i + 1];
+        }
+        books[genreChoice][bookAdded[genreChoice] - 1] = null;
+        bookAdded[genreChoice]--;
+        totalBooks--;
+        System.out.println("Book deleted successfully");
+    }
 }
