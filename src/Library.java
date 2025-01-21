@@ -9,7 +9,7 @@ public class Library {
     private static Book[][] books = new Book[MAX_BOOKS][MAX_BOOKS];     // 2D array in which we store the books
     private static String[] genres = {"Fiction", "Science", "History"}; // Array where we store genres
     private static int[] bookAdded = new int[GENRES]; // thankfully to this variable , we can track the number of books added to genre
-    private static int totalBooks = 0;  // Track the number of books in the library
+    protected static int totalBooks = 0;  // Track the number of books in the library
 
     public static void addBook(Scanner scanner) {
         System.out.println("\n Available Genres: ");
