@@ -39,4 +39,20 @@ public class Library {
         totalBooks++;
         System.out.println("Book added successfully");
     }
+
+    public static void displayBooks() {
+        System.out.println("\nLibrary Books: ");
+        for (int i = 0; i < genres.length; i++) {
+            System.out.println("Genre: " + genres[i]);
+            if (bookAdded[i] == 0) {
+                System.out.println(" No Books available");
+            } else {
+                for (int j = 0; j < bookAdded[i]; j++) {
+                    System.out.println("  - " + books[i][j].getName());
+                }
+            }
+        }
+    }
+
+    
 }
