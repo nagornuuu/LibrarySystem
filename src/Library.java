@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 /**
  * Class which represent a Library
  */
@@ -11,12 +10,12 @@ public class Library {
     // Fields
     private static Book[][] books = new Book[MAX_BOOKS][MAX_BOOKS];     // 2D array in which we store the books
     private static String[] genres = {"Fiction", "Science", "History"}; // Array where we store genres
-    private static int[] bookAdded = new int[GENRES]; // thankfully to this variable , we can track the number of books added to genre
+    private static int[] booksAdded = new int[GENRES]; // thankfully to this variable , we can track the number of books added to genre
     protected static int totalBooks = 0;  // Track the number of books in the library
 
     /**
      * Adds a book to the library
-     * @param scanner oject for user input
+     * @param scanner object for user input
      */
     public static void addBook(Scanner scanner) {
         System.out.println("\n Available Genres: ");
@@ -39,7 +38,7 @@ public class Library {
         }
 
         // here we check if genre has the space for more books
-        if (bookAdded[genreChoice] >= MAX_BOOKS) {
+        if (booksAdded[genreChoice] >= MAX_BOOKS) {
             System.out.println("The genre is full of books. We cannot add more books");
             return; // exit the method if input is not right
         }
@@ -50,8 +49,8 @@ public class Library {
         // here we are adding book to 2D array
         // genreChoice - zero-based index which represents the genre chosen by user
         // bookAdded[genreChoice] - the next empty slot in that genre
-        books[genreChoice][bookAdded[genreChoice]] = new Book(bookName, genres[genreChoice]);
-        bookAdded[genreChoice]++; // increment the count of book in the genre
+        books[genreChoice][booksAdded[genreChoice]] = new Book(bookName, genres[genreChoice]);
+        booksAdded[genreChoice]++; // increment the count of book in the genre
         totalBooks++; // increment the total number of books
         System.out.println("Book added successfully");
     }
@@ -70,7 +69,7 @@ public class Library {
             // Display book slots for the current genre
             System.out.print("|");
             for (int j = 0; j < MAX_BOOKS; j++) {
-                if (j < bookAdded[i] && books[i][j] != null) {
+                if (j < booksAdded[i] && books[i][j] != null) {
                     // %-5s| - ensures that book name can be consisted of max 5 characters in the shelf display
                     // i - representation of genre index(Fiction, Science)
                     // j - representation of the position of a specific book
@@ -114,33 +113,33 @@ public class Library {
         }
 
         // Check if there are any books to delete in the genre
-        if (bookAdded[genreChoice] == 0) {
+        if (booksAdded[genreChoice] == 0) {
             System.out.println("No Books available in this genre");
             return;
         }
 
         // Display the books in the selected genre
         System.out.println("\nBooks in " + genres[genreChoice] + ":");
-        for (int i = 0; i < bookAdded[genreChoice]; i++) {
+        for (int i = 0; i < booksAdded[genreChoice]; i++) {
             System.out.println((i + 1) + ". " + books[genreChoice][i].getName());
         }
 
-        System.out.print("Select a book to delete (1-" + bookAdded[genreChoice] + "): ");
+        System.out.print("Select a book to delete (1-" + booksAdded[genreChoice] + "): ");
         int bookToDelete = scanner.nextInt() - 1; // added - 1 to avoid 0
         scanner.nextLine();
 
         // Validate book selection to delete
-        if (bookToDelete < 0 || bookToDelete >= bookAdded[genreChoice]) {
+        if (bookToDelete < 0 || bookToDelete >= booksAdded[genreChoice]) {
             System.out.println("Invalid Book To Delete. Try again");
             return;
         }
 
         // Remove the book and shift remaining books to fill the gap
-        for (int i = bookToDelete; i < bookAdded[genreChoice] - 1; i++) {
+        for (int i = bookToDelete; i < booksAdded[genreChoice] - 1; i++) {
             books[genreChoice][i] = books[genreChoice][i + 1];
         }
-        books[genreChoice][bookAdded[genreChoice] - 1] = null; // Clear the last book
-        bookAdded[genreChoice]--; // decrement the count of books in the genre
+        books[genreChoice][booksAdded[genreChoice] - 1] = null; // Clear the last book
+        booksAdded[genreChoice]--; // decrement the count of books in the genre
         totalBooks--;  // decrement the total number of books
         System.out.println("Book deleted successfully");
     }
