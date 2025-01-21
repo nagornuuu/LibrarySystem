@@ -15,9 +15,9 @@ public class Library {
 
     /**
      * Adds a book to the library
-     * @param scanner object for user input
+     * @param sc object for user input
      */
-    public static void addBook(Scanner scanner) {
+    public static void addBook(Scanner sc) {
         System.out.println("\n Available Genres: ");
 
         // Display the genre options
@@ -28,8 +28,8 @@ public class Library {
         }
 
         System.out.println("Select a Genre (1-" + GENRES + "): ");
-        int genreChoice = scanner.nextInt() - 1; // added - 1 to avoid 0
-        scanner.nextLine();
+        int genreChoice = sc.nextInt() - 1; // added - 1 to avoid 0
+        sc.nextLine();
 
         // here we validate genre selection
         if (genreChoice < 0 || genreChoice >= GENRES) {
@@ -44,14 +44,14 @@ public class Library {
         }
 
         System.out.println("Enter the name of the book: ");
-        String bookName = scanner.nextLine();
+        String bookName = sc.nextLine();
 
         // here we are adding book to 2D array
         // genreChoice - zero-based index which represents the genre chosen by user
         // bookAdded[genreChoice] - the next empty slot in that genre
         books[genreChoice][booksAdded[genreChoice]] = new Book(bookName, genres[genreChoice]);
-        booksAdded[genreChoice]++; // increment the count of book in the genre
-        totalBooks++; // increment the total number of books
+        booksAdded[genreChoice]++;  // increment the count of book in the genre
+        totalBooks++;               // increment the total number of books
         System.out.println("Book added successfully");
     }
 
@@ -96,12 +96,14 @@ public class Library {
      */
     public static void deleteBook(Scanner scanner) {
         System.out.println("\nAvailable Genres: ");
+
         // Display the genre options
         int index = 1;
         for (String genre : genres) {
             System.out.println(index + ". " + genre);
             index++;
         }
+
         System.out.print("Select a genre (1-" + GENRES + "): ");
         int genreChoice = scanner.nextInt() - 1; // added - 1 to avoid 0
         scanner.nextLine();
@@ -138,9 +140,10 @@ public class Library {
         for (int i = bookToDelete; i < booksAdded[genreChoice] - 1; i++) {
             books[genreChoice][i] = books[genreChoice][i + 1];
         }
+
         books[genreChoice][booksAdded[genreChoice] - 1] = null; // Clear the last book
-        booksAdded[genreChoice]--; // decrement the count of books in the genre
-        totalBooks--;  // decrement the total number of books
+        booksAdded[genreChoice]--;  // decrement the count of books in the genre
+        totalBooks--;               // decrement the total number of books
         System.out.println("Book deleted successfully");
     }
 }

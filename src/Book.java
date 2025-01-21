@@ -5,7 +5,7 @@ public class Book {
     private String name;
     private String genre;
 
-    // Contructor which initialize book details
+    // Constructor which initialize book details
     public Book (String name, String genre) {
         this.name = name;
         this.genre = genre;
