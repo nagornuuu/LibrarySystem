@@ -13,8 +13,10 @@ public class Library {
 
     public static void addBook(Scanner scanner) {
         System.out.println("\n Available Genres: ");
-        for (int i = 0; i < genres.length; i++) {
-            System.out.println((i + 1) + ". " + genres[i]); // display genre options
+        int index = 1;
+        for (String genre : genres) {
+            System.out.println(index + ". " + genre);
+            index++;
         }
         System.out.println("Select a Genre (1-" + GENRES + "): ");
         int genreChoice = scanner.nextInt() - 1;
@@ -55,8 +57,10 @@ public class Library {
 
     public static void deleteBook(Scanner scanner) {
         System.out.println("\nAvailable Genres: ");
-        for (int i = 0; i < genres.length; i++) {
-            System.out.println((i + 1) + ". " + genres[i]);
+        int index = 1;
+        for (String genre : genres) {
+            System.out.println(index + ". " + genre);
+            index++;
         }
         System.out.print("Select a genre (1-" + GENRES + "): ");
         int genreChoice = scanner.nextInt() - 1;
