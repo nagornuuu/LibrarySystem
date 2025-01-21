@@ -16,12 +16,11 @@ public class Library {
         for (int i = 0; i < genres.length; i++) {
             System.out.println((i + 1) + ". " + genres[i]); // display genre options
         }
-
         System.out.println("Select a Genre (1-" + GENRES + "): ");
         int genreChoice = scanner.nextInt() - 1;
         scanner.nextLine();
 
-        if (genreChoice < 0 || genreChoice > GENRES) {
+        if (genreChoice < 0 || genreChoice >= GENRES) {
             System.out.println("Invalid Genre Choice. Try again");
             return;
         }
